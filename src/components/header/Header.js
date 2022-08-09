@@ -5,7 +5,7 @@ import {ReactComponent as Logo} from '../../assets/4.4 crown.svg.svg';
 
 import {OptionContainer,OptionLink,LogoContainer,HeaderContainer} from "./header.styles";
 
-const Header = () =>{
+function Header() {
     return(
         <HeaderContainer>
             <LogoContainer to='/'>
@@ -18,7 +18,7 @@ const Header = () =>{
                 <OptionLink to='/contact'>
                     CONTACT
                 </OptionLink>
-                <OptionLink to={'/signin'}>
+                <OptionLink to={'/auth'}>
                     Sign In
                 </OptionLink>
             </OptionContainer>
