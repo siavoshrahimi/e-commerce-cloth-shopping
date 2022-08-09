@@ -45,16 +45,16 @@ export const CollectionFooterContainer = styled.div`
     height: 5%;
     display: flex;
     justify-content: space-between;
-    font-size: 18px;
+    font-size: 15px;
 `;
 
 export const NameContainer = styled.span`
-    width: 90%;
+    width: 80%;
     margin-bottom: 15px;
 `;
 
 export const PriceContainer = styled.span`
-    width: 20%;
+    width: 10%;
 `;
 
 export const AddButton = styled(Button)`

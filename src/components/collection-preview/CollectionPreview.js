@@ -6,7 +6,6 @@ import {useNavigate} from "react-router-dom";
 
 
 function CollectionPreview({title, items}) {
-    console.log(items.filter((item,idx) => idx < 4))
     const navigate = useNavigate()
     return(
         <CollectionPreviewContainer>

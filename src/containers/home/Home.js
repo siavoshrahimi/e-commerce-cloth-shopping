@@ -4,10 +4,7 @@ import { useParams, useLocation} from 'react-router-dom'
 
 import {HomeContainer} from './home.styles';
 
-function Home(props) {
-    let params = useParams();
-    let location = useLocation();
-    console.log(params, location,props)
+function Home() {
     return(
         <HomeContainer>
            <Directory />
