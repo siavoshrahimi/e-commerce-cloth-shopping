@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 
+import { signInWithGoogle } from "../../firebase/firebase.utils";
 import InputForm from "../inputForm/InputForm";
 import Button from "../button/button";
 import {SignInContainer, Title, Subtitle, SignInForm, ButtonContainer} from "./signIn.styles";
@@ -43,7 +44,7 @@ function SingIn() {
                 <ButtonContainer>
                     <Button type="submit" >Sign In</Button>
                     <Button
-                        onClick={() =>console.log('google')}
+                        onClick={() =>signInWithGoogle()}
                         isGoogleSignIn
                         type="button"
                     >
