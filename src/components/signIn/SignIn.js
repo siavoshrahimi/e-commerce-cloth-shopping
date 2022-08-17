@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 
-import { signInWithGoogle } from "../../firebase/firebase.utils";
+import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
 import InputForm from "../inputForm/InputForm";
 import Button from "../button/button";
 import {SignInContainer, Title, Subtitle, SignInForm, ButtonContainer} from "./signIn.styles";
@@ -9,11 +9,16 @@ function SingIn() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSubmit = event =>{
+    const handleSubmit = async event =>{
         event.preventDefault();
+        try{
+            await auth.signInWithEmailAndPassword(email, password)
+            setPassword('')
+            setEmail('')
+        }catch (e) {
+            console.log(e.message)
+        }
 
-        setPassword('')
-        setEmail('')
     }
 
     const handleChange = event =>{
