@@ -6,6 +6,7 @@ import Home from "./containers/home/Home";
 import Shop from "./containers/shop/shop";
 import SignInAndUp from "./containers/signInAndUp/signInAndUp";
 import Header from "./components/header/Header";
+import Checkout from "./containers/chekout/checkout";
 import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
 import CurrentUserContext from "./contexts/current-user/current-user";
 
@@ -38,6 +39,7 @@ function App() {
         <Routes>
             <Route  path='/' element={<Home/>} />
             <Route  path='/shop' element={<Shop/>} />
+            <Route  path='/checkout' element={<Checkout/>} />
             <Route  path='/auth' element={currentUser ? <Navigate to='/' replace /> : <SignInAndUp /> } />
         </Routes>
     </>

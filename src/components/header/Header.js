@@ -7,12 +7,12 @@ import {OptionContainer,OptionLink,LogoContainer,HeaderContainer} from "./header
 import {auth} from "../../firebase/firebase.utils";
 import CurrentUserContext from "../../contexts/current-user/current-user";
 import CartDropdown from "../cart-dropdown/CartDropdown";
-import CartContext from "../../contexts/cart/cart";
+import {CartContext} from "../../contexts/provider/cart/cart";
 
 function Header() {
     const currentUser = useContext(CurrentUserContext)
-    const [hidden, setHidden] = useState(true)
-    const toggleHidden = () => setHidden(!hidden)
+    const {hidden,toggleHidden} = useContext(CartContext)
+
 
     const signOut = async () =>{
         try{
@@ -44,9 +44,7 @@ function Header() {
                             Sign In
                         </OptionLink>
                 }
-                <CartContext.Provider value={{hidden, toggleHidden}}>
-                    <CartIcon />
-                </CartContext.Provider>
+                <CartIcon />
             </OptionContainer>
             {hidden ? null : <CartDropdown/>}
         </HeaderContainer>
