@@ -38,7 +38,7 @@ function App() {
         </CurrentUserContext.Provider>
         <Routes>
             <Route  path='/' element={<Home/>} />
-            <Route  path='/shop' element={<Shop/>} />
+            <Route  path='/shop/*' element={<Shop/>} />
             <Route  path='/checkout' element={<Checkout/>} />
             <Route  path='/auth' element={currentUser ? <Navigate to='/' replace /> : <SignInAndUp /> } />
         </Routes>
