@@ -1,7 +1,7 @@
 import React,{useContext} from "react";
 
 import CheckoutItem from "../../components/checkout-item/checkoutItem";
-//import StripeButton from "../../components/stripe-button/stripeButton";
+import StripeButton from "../../components/stripe-button/StripeButton";
 
 
 import {CheckoutPageContainer,CheckoutHeaderContainer,HeaderBlockContainer,TotalContainer,WarningContainer} from "./checkout.styles";
@@ -38,9 +38,9 @@ const Checkout = () =>{
             <WarningContainer>
                 *Please use the following credit card for payments*
                 <br/>
-                4242 4242 4242 4242 -Exp:01/20 CVV:123
+                4242 4242 4242 4242 -Exp:01/25 CVV:123
             </WarningContainer>
-            {/*<StripeButton price={cartTotalPrice}/>*/}
+            <StripeButton price={cartTotalPrice}/>
 
         </CheckoutPageContainer>
     )

@@ -12,9 +12,8 @@ import {
     CollectionItemsContainer
 } from './collection.styles';
 
-const CollectionPage = ({ match }) => {
+const CollectionPage = () => {
     let params = useParams();
-    console.log(params)
     const {SHOP_DATA}  = useContext(CollectionContext);
     const collection = SHOP_DATA[params.collectionId];
     const { title, items } = collection;
