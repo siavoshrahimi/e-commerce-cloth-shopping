@@ -1,19 +1,22 @@
-import React, {useContext} from 'react';
+import React from 'react';
 
 import CollectionPreview from '../collection-preview/CollectionPreview';
 
 import {CollectionOverviewContainer} from "./collectionsOverview.styles";
-import CollectionContext from "../../contexts/collections/collections.context";
+import Spinner from "../spinner/Spinner";
 
-const CollectionsOverview = () => {
-  const {collections}  = useContext(CollectionContext);
+const CollectionsOverview = ({collectionsArray,loading}) => {
+
   return(
     <CollectionOverviewContainer>
-      {collections.map(({ id, ...otherCollectionProps }) => (
+      {!loading ?
+          collectionsArray.map(({ id, ...otherCollectionProps }) => (
         <CollectionPreview key={id} {...otherCollectionProps} />
-      ))}
+      )):
+          <Spinner/>
+      }
     </CollectionOverviewContainer>
-)
+  )
 };
 
 export default CollectionsOverview;

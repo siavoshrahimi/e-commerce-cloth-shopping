@@ -1,18 +1,13 @@
-import React, {useContext, useState} from "react";
-
-
+import React, {useContext} from "react";
 import {ReactComponent as Logo} from '../../assets/4.4 crown.svg.svg';
 import CartIcon from "../cart-icon/CartIcon";
 import {OptionContainer,OptionLink,LogoContainer,HeaderContainer} from "./header.styles";
 import {auth} from "../../firebase/firebase.utils";
-import CurrentUserContext from "../../contexts/current-user/current-user";
 import CartDropdown from "../cart-dropdown/CartDropdown";
 import {CartContext} from "../../contexts/provider/cart/cart";
 
-function Header() {
-    const currentUser = useContext(CurrentUserContext)
-    const {hidden,toggleHidden} = useContext(CartContext)
-
+function Header({data}) {
+    const {hidden} = useContext(CartContext);
 
     const signOut = async () =>{
         try{
@@ -35,11 +30,11 @@ function Header() {
                     CONTACT
                 </OptionLink>
                 {
-                    currentUser?
+                    data?
                         <OptionLink as='div' onClick={signOut}>
                             Sign out
                         </OptionLink>
-                        :
+                    :
                         <OptionLink to={'/auth'}>
                             Sign In
                         </OptionLink>

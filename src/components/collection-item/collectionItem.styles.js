@@ -49,12 +49,12 @@ export const CollectionFooterContainer = styled.div`
 `;
 
 export const NameContainer = styled.span`
-    width: 80%;
+    width:70%;
     margin-bottom: 15px;
 `;
 
 export const PriceContainer = styled.span`
-    width: 10%;
+    width: 19%;
 `;
 
 export const AddButton = styled(Button)`

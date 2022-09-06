@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect} from "react";
 import {Route,Routes,Navigate} from 'react-router-dom'
+import { useAuthUser } from "@react-query-firebase/auth";
 
 import {GlobalStyle} from "./GlobalStyle.style";
 import Home from "./containers/home/Home";
@@ -8,39 +9,23 @@ import SignInAndUp from "./containers/signInAndUp/signInAndUp";
 import Header from "./components/header/Header";
 import Checkout from "./containers/chekout/checkout";
 import {auth, createUserProfileDocument} from "./firebase/firebase.utils";
-import CurrentUserContext from "./contexts/current-user/current-user";
 
 function App() {
-    const [currentUser, setCurrentUser] = useState(null)
-    const [id, setId] = useState(null)
+    const {isLoading, data} = useAuthUser(["user"], auth);
 
-    useEffect(() =>{
-        auth.onAuthStateChanged(async userAuth =>{
-            if(userAuth){
-                const userRef = await createUserProfileDocument(userAuth)
-
-                userRef.onSnapshot(snapShot =>{
-                    setCurrentUser(snapShot.data())
-                    setId(snapShot.id)
-                })
-
-            }else {
-                setCurrentUser(userAuth)
-            }
-        })
+    useEffect( () =>{
+        data &&  createUserProfileDocument(data)
     },[])
 
   return (
     <>
         <GlobalStyle/>
-        <CurrentUserContext.Provider value={currentUser}>
-            <Header/>
-        </CurrentUserContext.Provider>
+        <Header data={data} isLoading={isLoading}/>
         <Routes>
             <Route  path='/' element={<Home/>} />
             <Route  path='/shop/*' element={<Shop/>} />
             <Route  path='/checkout' element={<Checkout/>} />
-            <Route  path='/auth' element={currentUser ? <Navigate to='/' replace /> : <SignInAndUp /> } />
+            <Route  path='/auth' element={data ? <Navigate to='/' replace /> : <SignInAndUp /> } />
         </Routes>
     </>
   );
