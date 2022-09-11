@@ -46,6 +46,9 @@ export const CollectionFooterContainer = styled.div`
     display: flex;
     justify-content: space-between;
     font-size: 15px;
+    @media screen and (max-width:800px){
+      font-size: 12px;
+    }
 `;
 
 export const NameContainer = styled.span`

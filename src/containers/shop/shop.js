@@ -1,11 +1,13 @@
-import React from "react";
+import React,{lazy , Suspense} from "react";
 import {Routes, Route} from 'react-router-dom';
 import { useFirestoreQuery } from "@react-query-firebase/firestore";
 import {query, collection} from 'firebase/firestore'
-
-import CollectionsOverview from "../../components/collections-overview/CollectionsOverview";
-import CollectionPage from "../collection/collection";
 import {firestore,convertCollectionsSnapshotToMap} from "../../firebase/firebase.utils";
+import Spinner from "../../components/spinner/Spinner";
+
+const CollectionsOverview = lazy(() => import("../../components/collections-overview/CollectionsOverview"))
+const CollectionPage = lazy(() => import("../collection/collection"))
+
 
 function Shop() {
 
@@ -21,10 +23,13 @@ function Shop() {
     }
 
     return(
-      <Routes>
-          <Route path='/' element={<CollectionsOverview  collectionsArray={collectionsArray}  loading={isLoading}/>}/>
-          <Route path=':collectionId' element={<CollectionPage collectionsObject={collectionsObject} loading={isLoading}/>}/>
-      </Routes>
+        <Suspense fallback={<Spinner/>} >
+            <Routes>
+                <Route path='/' element={<CollectionsOverview  collectionsArray={collectionsArray}  loading={isLoading}/>}/>
+                <Route path=':collectionId' element={<CollectionPage collectionsObject={collectionsObject} loading={isLoading}/>}/>
+            </Routes>
+        </Suspense>
+
     )
 }
 
